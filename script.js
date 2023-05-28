@@ -27,36 +27,27 @@ function getRndInteger(min, max) {
   }
 
   function playRound(playerSelection,computerSelection) {
-    let computerWin = true;
-    let playerWin =true;
-    let tie = true;
+    let computerWin = 1;
+    let playerWin = 2;
+    let tie = 3;
     if (playerSelection == "rock" && computerSelection =="paper") {
         return computerWin;
-        console.log("Paper beats Rock! Computer Wins!")
     }else if (playerSelection=="rock" && computerSelection == "scissors"){
         return playerWin;
-        console.log("Rock beats scissors! Player Wins!")
     } else if (playerSelection =="rock" && computerSelection =="rock"){
         return tie;
-        console.log("Rock doesnt beats Rocks! its a tie!")
     }else if(playerSelection == "paper" && computerSelection=="paper") {
         return tie;
-        console.log("Paper doesnt beat paper! its a tie!");
     }else if (playerSelection == "paper" && computerSelection =="scissors") {
         return computerWin;
-        console.log("Scissors beats paper! Computer wins!");
     }else if (playerSelection == "paper" && computerSelection =="rock") {
         return playerWin;
-        console.log("Paper beats rock! Player wins!");
     }else if (playerSelection == "scissors" && computerSelection=="scissors"){
         return tie;
-        console.log("scissors doesnt beat scissors! Its a tie!");
     }else if (playerSelection=="scissors" && computerSelection=="rock") {
         return computerWin;
-        console.log("scissors doesnt beat rock! Computer wins!");
     }else if(playerSelection=="scissors" && computerSelection =="paper"){
         return computerWin;
-        console.log("Scissors beats paper! Player wins!");
     }
     
   }
@@ -68,8 +59,51 @@ function getRndInteger(min, max) {
 
   }
 
-  computerSelection = getComputerChoice();
-  let playerSelection = getPlayerSelection();
-  console.log(playerSelection);
-  playRound(playerSelection, computerSelection);
+  function game() {
+    let computerScore=0;
+    let playerScore =0;
+
+    for (let index = 0; index < 6; index++) {
+        let playerSelection = getPlayerSelection();
+        let computerSelection = getComputerChoice();
+        let result = playRound(playerSelection, computerSelection);
+
+        switch (result) {
+            case 1:
+                console.log("Computer Wins!")
+                computerScore++;
+                break;
+            case 2:
+                console.log("Player Wins!");
+                playerScore++
+                break;
+
+            case 3:
+                console.log("Its a tie!");
+                break;
+
+        
+            default:
+                break;
+        }
+    }
+
+    console.log(`The score for the computer is ${computerScore}`);
+    console.log(`The score for the player is ${playerScore}`);
+
+    if (computerScore > playerScore){
+        console.log("The winner is the COMPUTER OVERLORDS!");
+    } else {
+        console.log("Computers had no chance against the human player");
+    }
+
+
+
+  }
+
+game();
+
+  
+ 
+
 
